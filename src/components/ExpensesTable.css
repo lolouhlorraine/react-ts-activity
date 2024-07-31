@@ -1,0 +1,28 @@
+.main-container {
+  display: flex;
+}
+
+.table-container {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.table-row {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+}
+
+.row-item {
+  display: flex;
+  flex: 1;
+  justify-content: left;
+  padding: 0 5px;
+}
+
+.heading {
+  font-weight: bold;
+}

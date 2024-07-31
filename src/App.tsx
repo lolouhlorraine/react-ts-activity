@@ -1,12 +1,34 @@
+import { useState, useEffect } from 'react'
+import { Header } from './components/Header';
+import { ExpensesTable } from './components/ExpensesTable';
+
 function App() {
+  const [expenseData, setExpenseData] = useState([])
+
+  const getExpenseData = async () => {
+    try {
+      const request = await fetch("https://expenses-backend-mu.vercel.app/expenses", {
+        headers: {
+          "Content-Type": "application/json",
+          Username: "lorina.castroverde"
+        }
+      });
+      const result = await request.json()
+      setExpenseData(result)
+    } catch (error) {
+      console.log('error', error)
+    }
+  }
+
+  useEffect(() => {
+    getExpenseData()
+  }, [])
+
+  // to do: improve styling to match UX framework
   return (
     <div id="template-text">
-      <h1>React Starter Template - TypeScript</h1>
-      <p>
-        For JavaScript please use{" "}
-        <a href="https://github.com/ruairidhflint/react-template">this</a>{" "}
-        template
-      </p>
+      <Header>Expenses</Header>
+      <ExpensesTable data={expenseData} />
     </div>
   );
 }
